@@ -27,7 +27,7 @@ export default function App() {
       <Text
       style={{color:'white'}}>Un cambio!</Text>
 
-      <Button title='Click me!' onPress={()=>alert('Hola!')} />
+      <Button title='Click me!' onPress={()=>alert('Hola!')} />//!ESTE BOTON ES EL NATIVO, NO SE PUEDE ESTILAR
       <StatusBar style="light" />
     </View>
   );
