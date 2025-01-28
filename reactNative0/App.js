@@ -7,7 +7,13 @@ export default function App() {
     <View style={styles.container}>
       <Image
       source={icon}
-      style={{width:10, height:10}}
+      style={{
+        width:200,
+        height:100,
+        resizeMode:'contain',
+        // resizeMode:'repeat',
+        // resizeMode:'stretch',
+      }}
       />
       <Text>Un cambio!</Text>
       <StatusBar style="auto" />
