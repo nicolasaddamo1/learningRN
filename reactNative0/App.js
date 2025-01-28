@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Constants from "expo-constants";
 import Main from "./components/Main";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
