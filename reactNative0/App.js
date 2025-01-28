@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { getLatestGames } from "./lib/metacritic";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
@@ -12,27 +12,29 @@ export default function App() {
     });
   }, []);
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
+    <ScrollView>
+      <View style={styles.container}>
+        <StatusBar style="light" />
 
-      {pokemon.map((pokemon) => (
-        <View key={pokemon.slug} style={styles.card}>
-          <Image source={{ uri: pokemon.image }} style={styles.image} />
-          <Text style={{ color: "white", textAlign: "center" }}>
-            {pokemon.title}
-          </Text>
-          <Text style={{ color: "white", textAlign: "center" }}>
-            {pokemon.description}
-          </Text>
-          <Text style={{ color: "white", textAlign: "center" }}>
-            {pokemon.score}
-          </Text>
-          <Text style={{ color: "white", textAlign: "center" }}>
-            {pokemon.types.join(", ")}
-          </Text>
-        </View>
-      ))}
-    </View>
+        {pokemon.map((pokemon) => (
+          <View key={pokemon.slug} style={styles.card}>
+            <Image source={{ uri: pokemon.image }} style={styles.image} />
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.title}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.description}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.score}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.types.join(", ")}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
