@@ -1,13 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  SafeAreaView,
-} from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import Constants from "expo-constants";
 import { getLatestGames } from "./lib/metacritic";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
@@ -20,37 +14,35 @@ export default function App() {
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ margin: 12 }}>
-        <ScrollView>
-          <StatusBar style="light" />
-          {pokemon.map((pokemon) => (
-            <View key={pokemon.slug} style={styles.card}>
-              <Image source={{ uri: pokemon.image }} style={styles.image} />
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  fontStyle: "italic",
-                  fontSize: 24,
-                  fontFamily: "monospace",
-                  fontWeight: "bold",
-                }}
-              >
-                {pokemon.title}
-              </Text>
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {pokemon.description}
-              </Text>
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {pokemon.score}
-              </Text>
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {pokemon.types.join(", ")}
-              </Text>
-            </View>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
+      <ScrollView>
+        <StatusBar style="light" />
+        {pokemon.map((pokemon) => (
+          <View key={pokemon.slug} style={styles.card}>
+            <Image source={{ uri: pokemon.image }} style={styles.image} />
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontStyle: "italic",
+                fontSize: 24,
+                fontFamily: "monospace",
+                fontWeight: "bold",
+              }}
+            >
+              {pokemon.title}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.description}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.score}
+            </Text>
+            <Text style={{ color: "white", textAlign: "center" }}>
+              {pokemon.types.join(", ")}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -61,6 +53,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
+    padding: 12,
   },
   card: {},
   image: {
