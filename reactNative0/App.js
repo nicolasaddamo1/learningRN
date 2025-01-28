@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 // import icon from './assets/icon.png'; es lo mismo que el require
 const icon = require('./assets/icon.png')
 export default function App() {
@@ -24,8 +24,11 @@ export default function App() {
           //las imagenes que son remotas no se muestran hasta que le pongas una resolucion de ancho y alto //!ESTO ES OBLIGATORIO!
         }}
       />
-      <Text>Un cambio!</Text>
-      <StatusBar style="auto" />
+      <Text
+      style={{color:'white'}}>Un cambio!</Text>
+
+      <Button title='Click me!' onPress={()=>alert('Hola!')} />
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -33,7 +36,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
