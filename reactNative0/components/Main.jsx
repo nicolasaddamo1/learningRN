@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { View, FlatList, ActivityIndicator } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PokeCard } from "./PokeCard";
+import { AnimatedPokeCard } from "./PokeCard";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
 export default function Main() {
@@ -23,7 +23,9 @@ export default function Main() {
         <FlatList
           data={pokemon}
           keyExtractor={(pokemon) => pokemon.slug}
-          renderItem={({ item }) => <PokeCard pokemon={item} />}
+          renderItem={({ item, index }) => (
+            <AnimatedPokeCard pokemon={item} index={index} />
+          )}
         ></FlatList>
       )}
     </View>

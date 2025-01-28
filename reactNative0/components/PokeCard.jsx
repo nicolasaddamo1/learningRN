@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef } from "react";
+import { Animated, Image, StyleSheet, Text, View } from "react-native";
 
 export function PokeCard({ pokemon }) {
   return (
@@ -26,6 +27,22 @@ export function PokeCard({ pokemon }) {
         {pokemon.types.join(", ")}
       </Text>
     </View>
+  );
+}
+export function AnimatedPokeCard({ pokemon, index }) {
+  const opacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 500,
+      delay: index * 500,
+      useNativeDriver: true,
+    }).start();
+  }, [opacity, index]);
+  return (
+    <Animated.View style={{ opacity }}>
+      <PokeCard pokemon={pokemon} />
+    </Animated.View>
   );
 }
 const styles = StyleSheet.create({
