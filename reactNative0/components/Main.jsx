@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { View, ScrollView, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PokeCard } from "./PokeCard";
@@ -20,11 +20,11 @@ export default function Main() {
       {pokemon.length === 0 ? (
         <ActivityIndicator size="large" color="red" />
       ) : (
-        <ScrollView>
-          {pokemon.map((pokemon) => (
-            <PokeCard key={pokemon.slug} pokemon={pokemon} />
-          ))}
-        </ScrollView>
+        <FlatList
+          data={pokemon}
+          keyExtractor={(pokemon) => pokemon.slug}
+          renderItem={({ item }) => <PokeCard pokemon={item} />}
+        ></FlatList>
       )}
     </View>
   );
