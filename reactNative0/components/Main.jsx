@@ -30,9 +30,6 @@ export default function Main() {
   );
 }
 
-const styles = StyleSheet.create({
-  card: {},
-});
 {
   /* <Image
 source={icon}
