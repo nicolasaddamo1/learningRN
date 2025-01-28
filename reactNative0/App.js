@@ -1,48 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
-import { getLatestGames } from "./lib/metacritic";
+import Main from "./components/Main";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
 export default function App() {
-  const [pokemon, setPokemon] = useState([]);
-  useEffect(() => {
-    getLatestGames().then((pokemon) => {
-      setPokemon(pokemon);
-    });
-  }, []);
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <StatusBar style="light" />
-        {pokemon.map((pokemon) => (
-          <View key={pokemon.slug} style={styles.card}>
-            <Image source={{ uri: pokemon.image }} style={styles.image} />
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                fontStyle: "italic",
-                fontSize: 24,
-                fontFamily: "monospace",
-                fontWeight: "bold",
-              }}
-            >
-              {pokemon.title}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.description}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.score}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.types.join(", ")}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
+      <StatusBar style="light" />
+      <Main />
     </View>
   );
 }
@@ -55,12 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: Constants.statusBarHeight,
     padding: 12,
-  },
-  card: {},
-  image: {
-    width: 140,
-    height: 175,
-    borderRadius: 10,
   },
 });
 {
