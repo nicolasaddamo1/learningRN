@@ -15,6 +15,15 @@ export default function App() {
         // resizeMode:'stretch',
       }}
       />
+      <Image 
+        source={{uri:'https://www.metacritic.com/a/img/catalog/provider/6/3/6-1-4763-13.jpg'}}
+        style={{
+          width:215,
+          height:294,
+          resizeMode:'contain',
+          //las imagenes que son remotas no se muestran hasta que le pongas una resolucion de ancho y alto //!ESTO ES OBLIGATORIO!
+        }}
+      />
       <Text>Un cambio!</Text>
       <StatusBar style="auto" />
     </View>
