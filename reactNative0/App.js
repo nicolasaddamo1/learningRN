@@ -1,15 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Constants from "expo-constants";
 import Main from "./components/Main";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" />
-      <Main />
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <StatusBar style="light" />
+        <Main />
+      </View>
+    </SafeAreaProvider>
   );
 }
 

@@ -1,58 +1,37 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PokeCard } from "./PokeCard";
 // import icon from './assets/icon.png'; es lo mismo que el require
 // const icon = require("./assets/icon.png");
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
+  const insets = useSafeAreaInsets();
   useEffect(() => {
     getLatestGames().then((pokemon) => {
       setPokemon(pokemon);
     });
   }, []);
   return (
-    <>
-      <ScrollView>
-        <StatusBar style="light" />
-        {pokemon.map((pokemon) => (
-          <View key={pokemon.slug} style={styles.card}>
-            <Image source={{ uri: pokemon.image }} style={styles.image} />
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                fontStyle: "italic",
-                fontSize: 24,
-                fontFamily: "monospace",
-                fontWeight: "bold",
-              }}
-            >
-              {pokemon.title}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.description}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.score}
-            </Text>
-            <Text style={{ color: "white", textAlign: "center" }}>
-              {pokemon.types.join(", ")}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
-    </>
+    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+      <StatusBar style="light" />
+      {pokemon.length === 0 ? (
+        <ActivityIndicator size="large" color="red" />
+      ) : (
+        <ScrollView>
+          {pokemon.map((pokemon) => (
+            <PokeCard key={pokemon.slug} pokemon={pokemon} />
+          ))}
+        </ScrollView>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {},
-  image: {
-    width: 140,
-    height: 175,
-    borderRadius: 10,
-  },
 });
 {
   /* <Image

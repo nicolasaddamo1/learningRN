@@ -65,7 +65,7 @@ export async function getLatestGames() {
   // Obtener los primeros 24 Pokémon (para mantener la misma cantidad que la función original)
   const pokemonList = [];
 
-  for (let i = 1; i <= 24; i++) {
+  for (let i = 1; i <= 200; i++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     const pokemon = await response.json();
 
