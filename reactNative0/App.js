@@ -18,6 +18,18 @@ export default function App() {
       {pokemon.map((pokemon) => (
         <View key={pokemon.slug} style={styles.card}>
           <Image source={{ uri: pokemon.image }} style={styles.image} />
+          <Text style={{ color: "white", textAlign: "center" }}>
+            {pokemon.title}
+          </Text>
+          <Text style={{ color: "white", textAlign: "center" }}>
+            {pokemon.description}
+          </Text>
+          <Text style={{ color: "white", textAlign: "center" }}>
+            {pokemon.score}
+          </Text>
+          <Text style={{ color: "white", textAlign: "center" }}>
+            {pokemon.types.join(", ")}
+          </Text>
         </View>
       ))}
     </View>
